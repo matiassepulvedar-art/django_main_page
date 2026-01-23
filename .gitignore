@@ -1,2 +1,8 @@
 venv/
+env/
 **/*.pyc
+**/__pycache__/
+.DS_Store
+.env
+.python-version
+**/public/static/**
