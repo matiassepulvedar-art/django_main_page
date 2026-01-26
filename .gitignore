@@ -6,3 +6,4 @@ env/
 .env
 .python-version
 **/public/static/**
+db.sqlite3

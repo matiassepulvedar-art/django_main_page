@@ -14,8 +14,10 @@ import os
 from pathlib import Path
 from django.forms.renderers import TemplatesSetting
 
+
 class CustomFormRenderer(TemplatesSetting):
-    form_template_name = 'form_snippet.html'
+    form_template_name = "form_snippet.html"
+
 
 FORM_RENDERER = "django_main_page.settings.CustomFormRenderer"
 
@@ -32,7 +34,7 @@ SECRET_KEY = "django-insecure-#%sce0k$8u23k%#i$@x490iuh0-f^#o%3j6=nqk_6yg7kj=@0y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -84,6 +86,14 @@ WSGI_APPLICATION = "django_main_page.wsgi.application"
 
 DATABASES = {
     "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "u755971234_deportes",
+        "USER": "u755971234_matias",
+        "PASSWORD": "Matias_3365",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
+    },
+    "local_db": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
@@ -124,10 +134,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/public/static/'
-STATIC_ROOT = '/usr/local/lsws/Example/html/django_main_page/public/static'
+STATIC_URL = "/public/static/"
+STATIC_ROOT = "/usr/local/lsws/Example/html/django_main_page/public/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
