@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from .views import ruleta
 
 urlpatterns = [
     path("", views.inicio, name="inicio"),
     path('admin/', admin.site.urls),
-    path('productos/', include('productos.urls'))
+    path('productos/', include('productos.urls')),
+    path("ruleta/", ruleta, name="ruleta"),
 ]

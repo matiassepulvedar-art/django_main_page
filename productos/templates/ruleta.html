@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Wheel of Fortune</title>
+
+<style>
+
+body{
+    text-align:center;
+    font-family:Arial;
+}
+
+canvas{
+    margin-top:30px;
+}
+
+#flecha{
+    font-size:40px;
+}
+
+button{
+    padding:12px 20px;
+    font-size:18px;
+    margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🎡 Wheel of Fortune</h1>
+
+<div id="flecha">⬇️</div>
+
+<canvas id="ruleta" width="400" height="400"></canvas>
+
+<br>
+<button onclick="girar()">Girar</button>
+
+<script>
+
+const premios = {{ premios|safe }};
+const canvas = document.getElementById("ruleta");
+const ctx = canvas.getContext("2d");
+
+let angulo = 0;
+let girando = false;
+
+function dibujar(){
+    const total = premios.length;
+    const arco = (2*Math.PI)/total;
+
+    for(let i=0;i<total;i++){
+        ctx.beginPath();
+        ctx.moveTo(200,200);
+        ctx.arc(200,200,200,i*arco,(i+1)*arco);
+        ctx.fillStyle = i%2==0 ? "#ffcc00":"#ff6600";
+        ctx.fill();
+
+        ctx.save();
+        ctx.translate(200,200);
+        ctx.rotate(i*arco+arco/2);
+        ctx.fillStyle="black";
+        ctx.fillText(premios[i],80,10);
+        ctx.restore();
+    }
+}
+
+dibujar();
+
+function girar(){
+    if(girando) return;
+
+    girando=true;
+
+    let random = Math.floor(Math.random()*premios.length);
+    let grados = 360*5 + (360/premios.length)*random;
+
+    angulo += grados;
+
+    canvas.style.transition="transform 4s ease-out";
+    canvas.style.transform="rotate("+angulo+"deg)";
+
+    setTimeout(()=>{
+        alert("Ganaste: "+premios[random]);
+        girando=false;
+    },4000);
+}
+
+</script>
+
+</body>
+</html>
